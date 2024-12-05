@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Clientes</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!--La tarjeta-->
+            <div class="card-body">
+                <form action="/editarCliente/" method="POST">{% csrf_token %}<!--Falta action-->
+                    <div class="form-group">
+                        <input type="text" id="txtid_cliente" name="txtid_cliente" class="form-control"
+                        placeholder="id cliente" value="{{misclientes.id_cliente}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                        placeholder="nombre del cliente" value="{{misclientes.nombre_cliente}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                        placeholder="direccion" value="{{misclientes.direccion}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txtcorreo" name="txtcorreo" class="form-control"
+                        placeholder="correo electronico" value="{{misclientes.correo_electronico}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="date" id="txtfecha" name="txtfecha" class="form-control"
+                        placeholder="fecha de registro" value="{{misclientes.fecha_registro|date:'Y-m-d'}}" required><br>
+                    </div>           
+                        <input type="text" id="txtcliente" name="txtcliente" class="form-control"
+                        placeholder="m.id_venta" value="{{misclientes.id_venta}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="date" id="txtedad" name="txtedad" class="form-control"
+                        placeholder="fecha de nacimiento" value="{{misclientes.fecha_nacimiento|date:'Y-m-d'}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div><!--La tarjeta-->
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- fila en editar -->
+
+
+
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+  <div class="row"><!--la fila-->
+
+    <div class= "col-sm-12 col-md-4 col-lg-4 xl-4"><!--Columna izquierda-->
+      <h1>registrar </h1>
+      <div class="card"><!--La tarjeta-->
+        <div class="card-body">
+          <form action="registrarCat/" method="POST">{% csrf_token %}<!--Falta action-->
+            <div class="form-group">
+              <input type="text" id="txtid_categoria" name="txtid_categoria" class="form-control"
+              placeholder="id categoria" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+              placeholder="nombre de categoria" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtdescripcion" name="txtdescripcion" class="form-control"
+              placeholder="Descripcion" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="date" id="txtfecha" name="txtfecha" class="form-control"
+              placeholder="fecha de creacion"required><br>
+            </div>
+            <div>
+              <input type="text" id="txtactivo" name="txtactivo" class="form-control"
+              placeholder="años activo" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtprioridad" name="txtprioridad" class="form-control"
+              placeholder="id proveedor" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtid_padre" name="txtid_padre" class="form-control"
+              placeholder="id producto" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div class="form-group py-3">
+              <button type="submit" class="btn btn-primary">Guardar categoria</button>
+            </div>
+          </form>
+        </div>
+      </div><!--La tarjeta-->
+    </div><!--Columna izquierda-->
+
+
+  <div class="col-sm-12 col-md-8 col-lg-8 xl-8"><!--Columna derecha-->
+    <h1>Listado de Categoria</h1>
+    <img class="w-50" src="{% static 'img/categoria.jpg' %} " alt="pao" width="100" height="200">
+
+    <!--La tabla-->
+    <table class="table table-striped">                            
+      <thead>
+        <tr>
+          <th scope="col">id_categoria</th>
+          <th scope="col">nombre</th>
+          <th scope="col">descripcion</th>
+          <th scope="col">fecha creacion</th>
+          <th scope="col">años activo</th>
+          <th scope="col">id proveedor</th>
+          <th scope="col">id producto</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in miscategorias %}
+          <tr>
+            <td>{{m.id_categoria}}</td>
+            <td>{{m.nombre_categoria}}</td>
+            <td>{{m.descripcion_categoria}}</td>
+            <td>{{m.fecha_creacion|date:'Y-m-d'}}</td>
+            <td>{{m.años_activo}}</td>
+            <td>{{m.id_proveedor}}</td>
+            <td>{{m.id_producto}}</td>
+            <td> <a href="seleccionarCat/{{m.id_categoria}}" class="btn btn-info">Editar</a></td><!--falta-->
+            <td> <a href="borrarCat/{{m.id_categoria}}" class="btn btn-danger">Borrar</a></td><!--falta-->
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!--La tabla-->
+  </div><!--Columna derecha-->
+</div><!--la fila-->
+{% endblock %}
