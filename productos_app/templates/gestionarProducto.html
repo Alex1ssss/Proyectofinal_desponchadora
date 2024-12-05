@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+  <div class="row"><!--la fila-->
+
+    <div class= "col-sm-12 col-md-4 col-lg-4 xl-4"><!--Columna izquierda-->
+      <h1>registrar </h1>
+      <div class="card"><!--La tarjeta-->
+        <div class="card-body">
+          <form action="registrarProducto/" method="POST">{% csrf_token %}<!--Falta action-->
+            <div class="form-group">
+              <input type="text" id="txtproducto" name="txtproducto" class="form-control"
+              placeholder="id producto " minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+              placeholder="nombre producto" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="date" id="txtfecha" name="txtfecha" class="form-control"
+              placeholder="fecha de ingreso" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtprecio" name="txtprecio" class="form-control"
+              placeholder="precio del producto" minlength="1" maxLenght="6" required><br>
+            </div>            
+            <div>
+              <input type="text" id="txtdescripcion" name="txtdescripcion" class="form-control"
+              placeholder="descripcion" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtcategoria" name="txtcategoria" class="form-control"
+              placeholder="categoria" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtstock" name="txtstock" class="form-control"
+              placeholder="# productos en stock" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div class="form-group py-3">
+              <button type="submit" class="btn btn-primary">Guardar producto</button>
+            </div>
+          </form>
+        </div>
+      </div><!--La tarjeta-->
+    </div><!--Columna izquierda-->
+
+
+  <div class="col-sm-12 col-md-8 col-lg-8 xl-8"><!--Columna derecha-->
+    <h1>Listado de productos</h1>
+    <img class="w-50" src="{% static 'img/llantas.webp' %} " alt="pao" width="100" height="200">
+
+    <!--La tabla-->
+    <table class="table table-striped">                            
+      <thead>
+        <tr>
+          <th scope="col">id producto</th>
+          <th scope="col">nombre del producto</th>
+          <th scope="col">fecha de ingreso</th>
+          <th scope="col">precio del producto</th>
+          <th scope="col">descripcion</th>
+          <th scope="col">categoria</th>
+          <th scope="col"># productos en stock</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in misproductos %}
+          <tr>
+            <td>{{m.id_producto}}</td>
+            <td>{{m.nombre_producto}}</td>
+            <td>{{m.fecha_ingreso|date:'Y-m-d'}}</td>
+            <td>{{m.precio_producto}}</td>
+            <td>{{m.descripcion_producto}}</td>
+            <td>{{m.categoria_producto}}</td>
+            <td>{{m.stock}}</td>
+            <td> <a href="seleccionarProducto/{{m.id_producto}}" class="btn btn-info">Editar</a></td><!--falta-->
+            <td> <a href="borrarProducto/{{m.id_producto}}" class="btn btn-danger">Borrar</a></td><!--falta-->
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!--La tabla-->
+  </div><!--Columna derecha-->
+</div><!--la fila-->
+{% endblock %}

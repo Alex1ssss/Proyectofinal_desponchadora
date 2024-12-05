@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar proveedores</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!--La tarjeta-->
+            <div class="card-body">
+                <form action="/editarPro/" method="POST">{% csrf_token %}<!--Falta action-->
+                    <div class="form-group">
+                        <input type="text" id="txtid_proveedor" name="txtid_proveedor" class="form-control"
+                        placeholder="id proveedor " value="{{misproveedores.id_proveedor}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                        placeholder="nombre del proveedor" value="{{misproveedores.nombre_proveedor}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txttelefono" name="txttelefono" class="form-control"
+                        placeholder="telefono" value="{{misproveedores.telefono_proveedor}}" minlength="1" maxLenght="6" required><br>
+                    </div>           
+                        <input type="text" id="txtcorreo" name="txtcorreo" class="form-control"
+                        placeholder="correo electronico" value="{{misproveedores.correo_electronico}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                        placeholder="direccion" value="{{misproveedores.direccion}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txtprincipal" name="txtprincipal" class="form-control"
+                        placeholder="contacto principal" value="{{misproveedores.contacto_principal}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar proveedor</button>
+                    </div>
+                </form>
+            </div>
+        </div><!--La tarjeta-->
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- fila en editar -->
+
+
+
+
+{% endblock %}
