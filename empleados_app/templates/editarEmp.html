@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar empleado</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!--La tarjeta-->
+            <div class="card-body">
+                <form action="/editarEmp/" method="POST">{% csrf_token %}<!--Falta action-->
+                    <div class="form-group">
+                        <input type="text" id="txtid_empleado" name="txtid_empleado" class="form-control"
+                        placeholder="id empleado " value="{{misempleados.id_empleado}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                        placeholder="nombre del empleado" value="{{misempleados.nombre_empleado}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txttelefono" name="txttelefono" class="form-control"
+                        placeholder="m.id_producto" value="{{misempleados.id_producto}}" minlength="1" maxLenght="6" required><br>
+                    </div>           
+                        <input type="text" id="txtcorreo" name="txtcorreo" class="form-control"
+                        placeholder="correo electronico" value="{{misempleados.correo_electronico}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                        placeholder="id_cliente" value="{{misempleados.id_cliente}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="text" id="txtpuesto" name="txtpuesto" class="form-control"
+                        placeholder="id_venta del empleado" value="{{misempleados.id_venta}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+                    <div>
+                        <input type="date" id="txtfecha" name="txtfecha" class="form-control"
+                        placeholder="fecha de contratacion" value="{{misempleados.fecha_contratacion|date:'Y-m-d'}}"required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar empleado</button>
+                    </div>
+                </form>
+            </div>
+        </div><!--La tarjeta-->
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- fila en editar -->
+
+
+
+
+{% endblock %}

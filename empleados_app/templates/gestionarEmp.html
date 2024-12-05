@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{%load static%}
+{% block cuerpo %}
+  <div class="row"><!--la fila-->
+
+    <div class= "col-sm-12 col-md-4 col-lg-4 xl-4"><!--Columna izquierda-->
+      <h1>registrar </h1>
+      <div class="card"><!--La tarjeta-->
+        <div class="card-body">
+          <form action="registrarEmp/" method="POST">{% csrf_token %}<!--Falta action-->
+            <div class="form-group">
+              <input type="text" id="txtid_empleado" name="txtid_empleado" class="form-control"
+              placeholder="id empleado" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+              placeholder="nombre del empleado" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txttelefono" name="txttelefono" class="form-control"
+              placeholder="id producto" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtcorreo" name="txtcorreo" class="form-control"
+              placeholder="correo electronico" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+              placeholder="id cliente" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="text" id="txtpuesto" name="txtpuesto" class="form-control"
+              placeholder="id venta" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div>
+              <input type="date" id="txtfecha" name="txtfecha" class="form-control"
+              placeholder="fecha de contratacion" minlength="1" maxLenght="6" required><br>
+            </div>
+            <div class="form-group py-3">
+              <button type="submit" class="btn btn-primary">Guardar empleado</button>
+            </div>
+          </form>
+        </div>
+      </div><!--La tarjeta-->
+    </div><!--Columna izquierda-->
+
+
+  <div class="col-sm-12 col-md-8 col-lg-8 xl-8"><!--Columna derecha-->
+    <h1>Listado de empleados</h1>
+    <img class="w-50" src="{% static 'img/empleados.jpg' %} " alt="pao" width="100" height="200">
+
+    <!--La tabla-->
+    <table class="table table-striped">                            
+      <thead>
+        <tr>
+          <th scope="col">id empleado</th>
+          <th scope="col">nombre del empleado</th>
+          <th scope="col">id producto</th>
+          <th scope="col">correo electronico</th>
+          <th scope="col">id cliente</th>
+          <th scope="col">id venta</th>
+          <th scope="col">fecha de contratacion</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in misempleados %}
+          <tr>
+            <td>{{m.id_empleado}}</td>
+            <td>{{m.nombre_empleado}}</td>
+            <td>{{m.id_producto}}</td>
+            <td>{{m.correo_electronico}}</td>
+            <td>{{m.id_cliente}}</td>
+            <td>{{m.id_venta}}</td>
+            <td>{{m.fecha_contratacion|date:'Y-m-d'}}</td>
+            <td> <a href="seleccionarEmp/{{m.id_empleado}}" class="btn btn-info">Editar</a></td><!--falta-->
+            <td> <a href="borrarEmp/{{m.id_empleado}}" class="btn btn-danger">Borrar</a></td><!--falta-->
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!--La tabla-->
+  </div><!--Columna derecha-->
+</div><!--la fila-->
+{% endblock %}
